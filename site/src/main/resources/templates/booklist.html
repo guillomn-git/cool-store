@@ -19,13 +19,13 @@ xmlns:th="http://www.thymeleaf.org">
 		<td class="center">Author</td>
 		<td class="center">Title</td>
 		<td class="center">ISBN</td>
-		<td class="center">&emsp;Price</td>
+		<td class="center">Price</td>
 	</tr>
 	<tr th:each="book : ${books}">
 		<td th:text="${book.author}"></td>
 		<td th:text="${book.title}"></td>
 		<td th:text="${book.isbn}"></td>
-		<td th:text="'&emsp;' + ${book.price}"></td>
+		<td th:text="'&emsp;' + ${book.price} + ' €'"></td>
 	</tr>
 </table>
 
