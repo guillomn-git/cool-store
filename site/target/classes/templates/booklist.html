@@ -2,38 +2,44 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Server Programming</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<style>
-	.center {
-	 text-align: center;
-	 font-weight: bold
-	}
-</style>
+	<title>Server Programming</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link type="text/css" rel="stylesheet" href="static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" /> 
+	<style>
+		.bold {
+		 font-weight: bold
+		}
+	</style>
 </head>
-<body>
-<h2 th:text="'Books'">Hello</h2>
 
-<table>
-	<tr>
-		<td class="center">Author</td>
-		<td class="center">Title</td>
-		<td class="center">ISBN</td>
-		<td class="center">Price</td>
-	</tr>
-	<tr th:each="book : ${books}">
-		<td th:text="${book.author}"></td>
-		<td th:text="${book.title}"></td>
-		<td th:text="${book.isbn}"></td>
-		<td th:text="'&emsp;' + ${book.price} + ' €'"></td>
-		<td><a th:href="@{/delete/{id}(id=${book.id})}"><button type="button">❌</button></a></td>
-		<td><a th:href="@{/edit/{id}(id=${book.id})}"><button type="button">✍️</button></a></td>
-	
-	</tr>
-</table> <br>
+<body class="container">
+	<h2 th:text="'CoolStore: Bookstore 😎📚'">Hello</h2>
+	<h3 th:text="'Page is still under construction... beware bugs 🚧'">Under construction</h3>
+	<br>
 
-<a href="/add" class="btn btn-primary"><button type="button">Add Book</button></a>
-
+	<div class="container">
+		<table class="table table-striped">
+			<tr class="bold">
+				<td>Title</td>
+				<td>Author</td>
+				<td>ISBN</td>
+				<td>Price</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr th:each="book : ${books}">
+				<td th:text="${book.author}"></td>
+				<td th:text="${book.title}"></td>
+				<td th:text="${book.isbn}"></td>
+				<td th:text="${book.price} + ' €'"></td>
+				<td><a class="btn btn-danger" th:href="@{/delete/{id}(id=${book.id})}">❌</a></td>
+				<td><a class="btn btn-warning" th:href="@{/edit/{id}(id=${book.id})}">✍️</a></td>
+			</tr>
+		</table> <br>
+		
+		<a href="/add" class="btn btn-success">Add Book</a>
+	</div>
 </body>
+
 </html>
 
