@@ -1,11 +1,15 @@
 package fi.haagahelia.coolstore.web;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import fi.haagahelia.coolstore.domain.Book;
 import fi.haagahelia.coolstore.domain.BookRepository;
@@ -22,7 +26,20 @@ public class BookController {
 	@Autowired
 	private CategoryRepository crepository;
 
-//	@GetMapping("/booklist")
+	// REST Methods
+	// Get all books in JSON
+	@RequestMapping(value = "/books", method = RequestMethod.GET)
+	public @ResponseBody List<Book> studentListRest() {
+		return (List<Book>) brepository.findAll();
+	}
+
+	// Get book by id in JSON
+	@RequestMapping(value = "/book/{id}", method = RequestMethod.GET)
+	public @ResponseBody Optional<Book> findBookRest(@PathVariable("id") Long bookId) {
+		return brepository.findById(bookId);
+	}
+
+	// HTML Methods
 	@RequestMapping(value = { "/", "/booklist" })
 	public String bookList(Model model) {
 		model.addAttribute("books", brepository.findAll());
