@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 //@Table annotation to change table name
@@ -18,15 +20,20 @@ public class Book {
 	// for price, better to use int? TODO: investigate
 	private float price;
 
+	@ManyToOne
+	@JoinColumn(name = "categoryId")
+	private Category category;
+
 	public Book() {
 	}
 
-	public Book(String title, String author, String isbn, float price) {
+	public Book(String title, String author, String isbn, float price, Category category) {
 		super();
 		this.title = title;
 		this.author = author;
 		this.isbn = isbn;
 		this.price = price;
+		this.category = category;
 	}
 
 	public Long getId() {
@@ -69,10 +76,22 @@ public class Book {
 		this.price = price;
 	}
 
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
 	@Override
 	public String toString() {
-		return "Book [id=" + id + ", title=" + title + ", author=" + author + ", isbn=" + isbn + ", price=" + price
-				+ "]";
+		if (this.category != null)
+			return "Book [id=" + id + ", title=" + title + ", author=" + author + ", isbn=" + isbn + ", price=" + price
+					+ ", category=" + this.getCategory() + "]";
+		else
+			return "Book [id=" + id + ", title=" + title + ", author=" + author + ", isbn=" + isbn + ", price=" + price
+					+ "]";
 	}
 
 }

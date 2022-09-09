@@ -22,14 +22,16 @@ xmlns:th="http://www.thymeleaf.org">
 			<tr class="bold">
 				<td>Title</td>
 				<td>Author</td>
+				<td>Category</td>
 				<td>ISBN</td>
 				<td>Price</td>
 				<td></td>
 				<td></td>
 			</tr>
 			<tr th:each="book : ${books}">
-				<td th:text="${book.author}"></td>
 				<td th:text="${book.title}"></td>
+				<td th:text="${book.author}"></td>
+				<td th:text="${book.category.name}"></td>
 				<td th:text="${book.isbn}"></td>
 				<td th:text="${book.price} + ' €'"></td>
 				<td><a class="btn btn-danger" th:href="@{/delete/{id}(id=${book.id})}">❌</a></td>
