@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+	<title>Server Programming</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link type="text/css" rel="stylesheet" href="static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+
+<body>
+	<h1 class="container text-center">Cool Store 😎📚</h1>
+	<h2 class="container text-center" th:text="Login">Login</h2>
+	
+	<div class="container text-center text-danger" th:if="${param.error}">Invalid username and password
+	</div>
+	<br>
+	
+	<div class="container text-center">
+	
+		<form th:action="@{/login}" method="post">
+
+		<div class="form-group" >
+			<label for="username">User name: 
+				<input class="form-control" type="text" name="username"/>
+				</label>
+				<br>
+		</div>
+			
+		<div class="form-group" >
+			<label for="password">Password: 
+				<input class="form-control" type="text" name="password"/>
+				</label>
+				<br>
+		</div>
+
+		<div>
+			<input class="btn btn-primary" type="submit" value="Sign in"/>
+		</div>
+
+		</form>
+	
+	</div>
+</body>
+</html>
