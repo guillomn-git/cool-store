@@ -2,6 +2,7 @@ package fi.haagahelia.coolstore;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,9 +12,14 @@ import fi.haagahelia.coolstore.domain.Book;
 import fi.haagahelia.coolstore.domain.BookRepository;
 import fi.haagahelia.coolstore.domain.Category;
 import fi.haagahelia.coolstore.domain.CategoryRepository;
+import fi.haagahelia.coolstore.domain.User;
+import fi.haagahelia.coolstore.domain.UserRepository;
 
 @SpringBootApplication
 public class CoolstoreApplication {
+
+	@Autowired
+	private UserRepository urepository;
 
 	private static final Logger log = LoggerFactory.getLogger(CoolstoreApplication.class);
 
@@ -34,11 +40,22 @@ public class CoolstoreApplication {
 			crepository.save(new Category("Horror"));
 			crepository.save(new Category("Children's"));
 			crepository.save(new Category("Undefined"));
-
+//
 			brepository.save(new Book("Pride and Prejudice", "Jane Austen", "9780679783268", 7.99f,
 					crepository.findByName("Romance").get(0)));
 			brepository.save(new Book("1984", "George Orwell", "9780452284234", 12.39f,
 					crepository.findByName("Political Fiction").get(0)));
+//
+			User user1 = new User("user", "$2a$10$o9EaMx2mzHxMY64EeNnHJurqTfBMc.42Yd7PYroTylKMloHqJtXoe",
+					"user@email.com", "USER");
+			User user2 = new User("admin", "$2a$10$1NcT5maAHowCWuIlMa98peItBu5EDMgV5cljf8jJr8BM9aPQ5KBbu",
+					"admin@email.com", "ADMIN");
+			User user3 = new User("cooluser", "$2a$10$o9EaMx2mzHxMY64EeNnHJurqTfBMc.42Yd7PYroTylKMloHqJtXoe",
+					"cooluser@email.com", "user");
+
+			urepository.save(user1);
+			urepository.save(user2);
+			urepository.save(user3);
 		};
 	}
 

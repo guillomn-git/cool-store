@@ -55,7 +55,7 @@ public class BookController {
 	}
 
 	@RequestMapping(value = "/add")
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public String addBook(Model model) {
 		model.addAttribute("book", new Book());
 		model.addAttribute("categories", crepository.findAll());
@@ -69,14 +69,14 @@ public class BookController {
 	}
 
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public String deleteBook(@PathVariable("id") Long id, Model model) {
 		brepository.deleteById(id);
 		return "redirect:../booklist";
 	}
 
 	@RequestMapping(value = "/edit/{id}")
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public String editBook(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("book", brepository.findById(id));
 		model.addAttribute("categories", crepository.findAll());
