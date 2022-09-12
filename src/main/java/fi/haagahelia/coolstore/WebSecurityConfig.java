@@ -23,7 +23,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().antMatchers("/css/**", "/h2-console/**").permitAll().anyRequest().authenticated().and()
-				.formLogin().loginPage("/login").defaultSuccessUrl("/booklist", true).permitAll();
+				.formLogin().loginPage("/login").defaultSuccessUrl("/booklist", true).permitAll().and()
+				.requiresChannel().requestMatchers(r -> r.getHeader("X-Forwarded-Proto") != null).requiresSecure();
 	}
 
 	@Autowired
