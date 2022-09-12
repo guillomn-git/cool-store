@@ -50,12 +50,9 @@ public class CoolstoreApplication {
 					"user@email.com", "USER");
 			User user2 = new User("admin", "$2a$10$1NcT5maAHowCWuIlMa98peItBu5EDMgV5cljf8jJr8BM9aPQ5KBbu",
 					"admin@email.com", "ADMIN");
-			User user3 = new User("cooluser", "$2a$10$o9EaMx2mzHxMY64EeNnHJurqTfBMc.42Yd7PYroTylKMloHqJtXoe",
-					"cooluser@email.com", "user");
 
 			urepository.save(user1);
 			urepository.save(user2);
-			urepository.save(user3);
 		};
 	}
 
