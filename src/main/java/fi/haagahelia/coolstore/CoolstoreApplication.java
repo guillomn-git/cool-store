@@ -40,19 +40,20 @@ public class CoolstoreApplication {
 			crepository.save(new Category("Horror"));
 			crepository.save(new Category("Children's"));
 			crepository.save(new Category("Undefined"));
-//
+
 			brepository.save(new Book("Pride and Prejudice", "Jane Austen", "9780679783268", 7.99f,
 					crepository.findByName("Romance").get(0)));
 			brepository.save(new Book("1984", "George Orwell", "9780452284234", 12.39f,
 					crepository.findByName("Political Fiction").get(0)));
-//
-			User user1 = new User("user", "$2a$10$o9EaMx2mzHxMY64EeNnHJurqTfBMc.42Yd7PYroTylKMloHqJtXoe",
-					"user@email.com", "USER");
-			User user2 = new User("admin", "$2a$10$1NcT5maAHowCWuIlMa98peItBu5EDMgV5cljf8jJr8BM9aPQ5KBbu",
-					"admin@email.com", "ADMIN");
 
-			urepository.save(user1);
-			urepository.save(user2);
+			new User("user", "$2a$10$o9EaMx2mzHxMY64EeNnHJurqTfBMc.42Yd7PYroTylKMloHqJtXoe", "user@email.com", "USER");
+			urepository.save(urepository.findByUsername("user"));
+
+			new User("admin", "$2a$10$1NcT5maAHowCWuIlMa98peItBu5EDMgV5cljf8jJr8BM9aPQ5KBbu", "admin@email.com",
+					"ADMIN");
+
+			urepository.save(urepository.findByUsername("admin"));
+
 		};
 	}
 
